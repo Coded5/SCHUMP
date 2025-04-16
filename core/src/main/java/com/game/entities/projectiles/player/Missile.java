@@ -6,12 +6,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.game.Constants;
-import com.game.ViewportSingleton;
 import com.game.animation.Animation;
 import com.game.animation.Keyframe;
 import com.game.entities.EntityHandlerSingleton;
 import com.game.entities.projectiles.Projectile;
 import com.game.entities.properties.Collidable;
+import com.game.screens.GameScreen;
 
 public class Missile extends Projectile {
 
@@ -37,7 +37,7 @@ public class Missile extends Projectile {
         animation.run();
         position.mulAdd(velocity, Gdx.graphics.getDeltaTime());
 
-        if (position.y >= ViewportSingleton.getInstance().getWorldHeight()) {
+        if (position.y >= GameScreen.WORLD_HEIGHT) {
             EntityHandlerSingleton.getInstance().destroy(this);
         }
     }

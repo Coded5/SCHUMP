@@ -13,12 +13,22 @@ public class EventManager {
         events.put(EventId.ON_PLAYER_HIT , new GameEvent(EventId.ON_PLAYER_HIT));
         events.put(EventId.ON_GAME_OVER , new GameEvent(EventId.ON_GAME_OVER));
     }
+//
+//    public void dispose() {
+//        for (GameEvent gameEvent : events.values()) {
+//            gameEvent.clearSubscriber();
+//        }
+//    }
 
     public static EventManager getInstance() {
         if (eventManager == null)
             eventManager = new EventManager();
 
         return eventManager;
+    }
+
+    public static void dispose() {
+        eventManager = null;
     }
 
     public void subscribe(EventId eventId, EventObserver observer) {
@@ -30,6 +40,7 @@ public class EventManager {
     }
 
     public void invoke(EventId eventId) {
+        System.out.println(eventId + " invoked");
         events.get(eventId).invoke();
     }
 

@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.game.Constants;
-import com.game.ViewportSingleton;
 import com.game.entities.EntityHandlerSingleton;
 import com.game.entities.projectiles.Projectile;
 import com.game.entities.properties.Collidable;

@@ -25,6 +25,10 @@ public class GameEvent {
         subscriber.remove(observer);
     }
 
+    public void clearSubscriber() {
+        this.subscriber.clear();
+    }
+
     public EventId getEventId() {
         return eventId;
     }

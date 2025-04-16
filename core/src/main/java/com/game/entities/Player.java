@@ -1,5 +1,6 @@
 package com.game.entities;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -8,12 +9,12 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.game.Constants;
-import com.game.ViewportSingleton;
 import com.game.entities.projectiles.Projectile;
 import com.game.entities.projectiles.player.Missile;
 import com.game.entities.properties.Collidable;
 import com.game.event.EventId;
 import com.game.event.EventManager;
+import com.game.screens.GameScreen;
 
 import java.util.Iterator;
 
@@ -32,6 +33,9 @@ public class Player extends Entity implements Collidable {
         );
 
         sprite.setSize(0.75f, 0.75f);
+
+        currentHealth = maxHealth;
+        kills = 0;
 
         EventManager.getInstance().subscribe(EventId.ON_PLAYER_KILL, () -> {
             kills++;
@@ -88,10 +92,9 @@ public class Player extends Entity implements Collidable {
 
         position.mulAdd(velocity, Gdx.graphics.getDeltaTime());
 
-        float worldWidth = ViewportSingleton.getInstance().getWorldWidth();
-        float worldHeight = ViewportSingleton.getInstance().getWorldHeight();
-        position.x = MathUtils.clamp(position.x, sprite.getWidth() / 2, worldWidth - (sprite.getWidth() / 2));
-        position.y = MathUtils.clamp(position.y, sprite.getHeight() / 2, worldHeight - (sprite.getHeight() / 2));
+
+        position.x = MathUtils.clamp(position.x, sprite.getWidth() / 2, GameScreen.WORLD_WIDTH - (sprite.getWidth() / 2));
+        position.y = MathUtils.clamp(position.y, sprite.getHeight() / 2, GameScreen.WORLD_HEIGHT - (sprite.getHeight() / 2));
     }
 
     public void render(SpriteBatch batch) {

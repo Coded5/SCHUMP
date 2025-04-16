@@ -42,6 +42,6 @@ public class AngryAlienCat extends Enemy {
 
     @Override
     public boolean isCollide(Collidable collidable) {
-        return getCollider().contains(collidable.getCollider());
+        return getCollider().overlaps(collidable.getCollider());
     }
 }

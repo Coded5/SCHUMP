@@ -11,4 +11,8 @@ public class EntityHandlerSingleton {
         return handler;
     }
 
+    public static void dispose() {
+        handler = null;
+    }
+
 }

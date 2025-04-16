@@ -12,8 +12,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.game.animation.Background;
 import com.game.event.EventId;
 import com.game.event.EventManager;
-import com.game.screens.GameOverScreen;
-import com.game.screens.GameScreen;
 import com.game.screens.MenuScreen;
 
 public class Main extends Game {
@@ -42,7 +40,7 @@ public class Main extends Game {
         this.setScreen(new MenuScreen(this));
 
         music.setLooping(true);
-        music.setVolume(0.25f);
+        music.setVolume(0.1f);
         music.play();
 
         EventManager.getInstance().subscribe(EventId.ON_GAME_OVER, Constants.SFX_DEATH::play);

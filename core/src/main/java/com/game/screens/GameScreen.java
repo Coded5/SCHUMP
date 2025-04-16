@@ -1,16 +1,12 @@
 package com.game.screens;
 
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.game.Constants;
-import com.game.EnemySpawner;
+import com.game.mechanics.EnemySpawner;
 import com.game.Main;
-import com.game.entities.EntityHandler;
 import com.game.entities.EntityHandlerSingleton;
 import com.game.entities.Player;
 import com.game.event.EventId;
@@ -33,13 +29,18 @@ public class GameScreen implements Screen {
     public GameScreen(final Main game) {
         this.game = game;
 
+        EntityHandlerSingleton.dispose();
+        EventManager.dispose();
+
         this.gui = new InGameGUI();
+
         this.player = new Player();
         this.spawner = new EnemySpawner();
         this.gameViewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
         EntityHandlerSingleton.getInstance().addEntity(player);
 
         EventManager.getInstance().subscribe(EventId.ON_PLAYER_HIT, () -> {
+            System.out.println(player.getCurrentHealth());
             if (player.getCurrentHealth() <= 0){
                 Constants.SFX_DEATH.play();
                 game.setScreen(new GameOverScreen(game));
@@ -96,11 +97,13 @@ public class GameScreen implements Screen {
 
     @Override
     public void hide() {
+        EventManager.getInstance().dispose();
         EntityHandlerSingleton.getInstance().clear();
     }
 
     @Override
     public void dispose() {
+        EventManager.getInstance().dispose();
         EntityHandlerSingleton.getInstance().clear();
     }
 }

@@ -1,17 +1,15 @@
-package com.game;
+package com.game.mechanics;
 
 import com.badlogic.gdx.Gdx;
 import com.game.entities.enemies.Enemy;
 import com.game.entities.EntityHandlerSingleton;
 
-//TODO: Finish this (Add strategy)
 public class EnemySpawner {
 
     private float spawnPeriod = 1;
     private float accum = 0;
 
     private EnemyFactory enemyFactory;
-
 
     public EnemySpawner() {
         this.enemyFactory = new EnemyFactory();
