@@ -8,7 +8,7 @@ public class EventManager {
     private static EventManager eventManager;
     private HashMap<EventId, GameEvent> events = new HashMap<>();
 
-    public EventManager() {
+    private EventManager() {
         events.put(EventId.ON_PLAYER_KILL, new GameEvent(EventId.ON_PLAYER_KILL));
         events.put(EventId.ON_PLAYER_HIT , new GameEvent(EventId.ON_PLAYER_HIT));
         events.put(EventId.ON_GAME_OVER , new GameEvent(EventId.ON_GAME_OVER));

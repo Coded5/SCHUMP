@@ -6,8 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.game.Constants;
-import com.game.entities.Entity;
-import com.game.entities.EntityHandlerSingleton;
+import com.game.entities.EntityHandler;
 import com.game.entities.projectiles.enemy.GunnerBullet;
 import com.game.entities.properties.Collidable;
 
@@ -25,7 +24,7 @@ public class GunnerShip extends Enemy {
         accumTime += Gdx.graphics.getDeltaTime();
 
         if (accumTime >= shootPeriod) {
-            EntityHandlerSingleton.getInstance().addEntity(new GunnerBullet(position.cpy()));
+            EntityHandler.getInstance().addEntity(new GunnerBullet(position.cpy()));
             accumTime = 0;
         }
     }

@@ -70,10 +70,10 @@ public class Player extends Entity implements Collidable {
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-            EntityHandlerSingleton.getInstance().addEntity(new Missile(position.cpy()));
+            EntityHandler.getInstance().addEntity(new Missile(position.cpy()));
         }
 
-        Iterator<Entity> iterator = EntityHandlerSingleton.getInstance().getEntitiesIter();
+        Iterator<Entity> iterator = EntityHandler.getInstance().getEntitiesIter();
 
         while (iterator.hasNext()) {
             Entity entity = iterator.next();
@@ -84,7 +84,7 @@ public class Player extends Entity implements Collidable {
                 if (projectile.isCollide(this) && projectile.isFromEnemy())  {
                     EventManager.getInstance().invoke(EventId.ON_PLAYER_HIT);
 
-                    EntityHandlerSingleton.getInstance().destroy(entity);
+                    EntityHandler.getInstance().destroy(entity);
                 }
             }
 

@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.game.Constants;
 import com.game.entities.Entity;
-import com.game.entities.EntityHandlerSingleton;
+import com.game.entities.EntityHandler;
 import com.game.entities.Player;
 import com.game.entities.projectiles.Projectile;
 import com.game.entities.properties.Collidable;
@@ -29,7 +29,7 @@ public abstract class Enemy extends Entity implements Collidable {
     }
 
     public void update() {
-        for (Iterator<Entity> iterator = EntityHandlerSingleton.getInstance().getEntitiesIter(); iterator.hasNext(); ) {
+        for (Iterator<Entity> iterator = EntityHandler.getInstance().getEntitiesIter(); iterator.hasNext(); ) {
             Entity entity = iterator.next();
 
             if (entity instanceof Projectile) {
@@ -39,8 +39,8 @@ public abstract class Enemy extends Entity implements Collidable {
                     EventManager.getInstance().invoke(EventId.ON_PLAYER_KILL);
 
                     Constants.SFX_EXPLOSION.play();
-                    EntityHandlerSingleton.getInstance().destroy(projectile);
-                    EntityHandlerSingleton.getInstance().destroy(this);
+                    EntityHandler.getInstance().destroy(projectile);
+                    EntityHandler.getInstance().destroy(this);
                 }
             }
             else if (entity instanceof Player) {
@@ -49,7 +49,7 @@ public abstract class Enemy extends Entity implements Collidable {
                 if (player.isCollide(this)) {
                     EventManager.getInstance().invoke(EventId.ON_PLAYER_HIT);
 
-                    EntityHandlerSingleton.getInstance().destroy(this);
+                    EntityHandler.getInstance().destroy(this);
                 }
             }
         }

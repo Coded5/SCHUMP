@@ -3,16 +3,23 @@ package com.game.entities;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+import javax.swing.plaf.InsetsUIResource;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class EntityHandler {
+
+    private static EntityHandler instance;
 
     private ArrayList<Entity> entities = new ArrayList<>();
     private ArrayList<Entity> toBeAdd = new ArrayList<>();
     private ArrayList<Entity> toBeRemove = new ArrayList<>();
 
     private boolean clearFlag = false;
+
+    private EntityHandler() {
+
+    }
 
     public void update() {
         for (Entity entity : entities) {
@@ -54,6 +61,18 @@ public class EntityHandler {
 
     public void destroy(Entity entity) {
         toBeRemove.add(entity);
+    }
+
+    public static void dispose() {
+        instance = null;
+    }
+
+    public static EntityHandler getInstance() {
+        if (instance == null) {
+            instance = new EntityHandler();
+        }
+
+        return instance;
     }
 
 }

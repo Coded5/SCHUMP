@@ -1,8 +1,8 @@
 package com.game.mechanics;
 
 import com.badlogic.gdx.Gdx;
+import com.game.entities.EntityHandler;
 import com.game.entities.enemies.Enemy;
-import com.game.entities.EntityHandlerSingleton;
 
 public class EnemySpawner {
 
@@ -20,7 +20,7 @@ public class EnemySpawner {
 
         while (accum >= spawnPeriod) {
             Enemy enemy = enemyFactory.createEnemy();
-            EntityHandlerSingleton.getInstance().addEntity(enemy);
+            EntityHandler.getInstance().addEntity(enemy);
             accum -= spawnPeriod;
         }
     }

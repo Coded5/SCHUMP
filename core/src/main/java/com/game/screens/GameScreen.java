@@ -5,9 +5,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.game.Constants;
+import com.game.entities.EntityHandler;
 import com.game.mechanics.EnemySpawner;
 import com.game.Main;
-import com.game.entities.EntityHandlerSingleton;
 import com.game.entities.Player;
 import com.game.event.EventId;
 import com.game.event.EventManager;
@@ -29,7 +29,7 @@ public class GameScreen implements Screen {
     public GameScreen(final Main game) {
         this.game = game;
 
-        EntityHandlerSingleton.dispose();
+        EntityHandler.dispose();
         EventManager.dispose();
 
         this.gui = new InGameGUI();
@@ -37,7 +37,7 @@ public class GameScreen implements Screen {
         this.player = new Player();
         this.spawner = new EnemySpawner();
         this.gameViewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
-        EntityHandlerSingleton.getInstance().addEntity(player);
+        EntityHandler.getInstance().addEntity(player);
 
         EventManager.getInstance().subscribe(EventId.ON_PLAYER_HIT, () -> {
             System.out.println(player.getCurrentHealth());
@@ -61,7 +61,7 @@ public class GameScreen implements Screen {
 
     private void update() {
         spawner.update();
-        EntityHandlerSingleton.getInstance().update();
+        EntityHandler.getInstance().update();
 
     }
 
@@ -72,7 +72,7 @@ public class GameScreen implements Screen {
 
         batch.setProjectionMatrix(gameViewport.getCamera().combined);
 
-        EntityHandlerSingleton.getInstance().render(batch);
+        EntityHandler.getInstance().render(batch);
 
         game.getViewport().apply();
         batch.setProjectionMatrix(game.getViewport().getCamera().combined);
@@ -98,12 +98,12 @@ public class GameScreen implements Screen {
     @Override
     public void hide() {
         EventManager.getInstance().dispose();
-        EntityHandlerSingleton.getInstance().clear();
+        EntityHandler.getInstance().clear();
     }
 
     @Override
     public void dispose() {
         EventManager.getInstance().dispose();
-        EntityHandlerSingleton.getInstance().clear();
+        EntityHandler.getInstance().clear();
     }
 }

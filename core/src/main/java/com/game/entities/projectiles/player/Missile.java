@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.game.Constants;
 import com.game.animation.Animation;
 import com.game.animation.Keyframe;
-import com.game.entities.EntityHandlerSingleton;
+import com.game.entities.EntityHandler;
 import com.game.entities.projectiles.Projectile;
 import com.game.entities.properties.Collidable;
 import com.game.screens.GameScreen;
@@ -38,7 +38,7 @@ public class Missile extends Projectile {
         position.mulAdd(velocity, Gdx.graphics.getDeltaTime());
 
         if (position.y >= GameScreen.WORLD_HEIGHT) {
-            EntityHandlerSingleton.getInstance().destroy(this);
+            EntityHandler.getInstance().destroy(this);
         }
     }
 
