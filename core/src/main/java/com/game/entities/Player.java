@@ -47,6 +47,7 @@ public class Player extends Entity implements Collidable {
         });
     }
 
+    //Read inputs and update position
     public void update() {
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
@@ -97,6 +98,7 @@ public class Player extends Entity implements Collidable {
         position.y = MathUtils.clamp(position.y, sprite.getHeight() / 2, GameScreen.WORLD_HEIGHT - (sprite.getHeight() / 2));
     }
 
+    //Draw player sprite
     public void render(SpriteBatch batch) {
         sprite.setCenter(position.x, position.y);
         sprite.draw(batch);

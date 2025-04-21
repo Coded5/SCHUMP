@@ -11,14 +11,8 @@ public class EventManager {
     private EventManager() {
         events.put(EventId.ON_PLAYER_KILL, new GameEvent(EventId.ON_PLAYER_KILL));
         events.put(EventId.ON_PLAYER_HIT , new GameEvent(EventId.ON_PLAYER_HIT));
-        events.put(EventId.ON_GAME_OVER , new GameEvent(EventId.ON_GAME_OVER));
+        events.put(EventId.ON_GAME_OVER  , new GameEvent(EventId.ON_GAME_OVER));
     }
-//
-//    public void dispose() {
-//        for (GameEvent gameEvent : events.values()) {
-//            gameEvent.clearSubscriber();
-//        }
-//    }
 
     public static EventManager getInstance() {
         if (eventManager == null)

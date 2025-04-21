@@ -52,12 +52,6 @@ public class ButtonGUI {
         float yy = y;
         font.draw(batch, layout, xx, yy);
 
-        bound = new Rectangle(xx, yy - layout.height, layout.width * 1.5f, layout.height * 1.5f);
-//
-//        ShapeRenderer renderer = new ShapeRenderer();
-//        renderer.begin(ShapeRenderer.ShapeType.Line);
-//        renderer.rect(xx, yy, bound.width, bound.height);
-//        renderer.end();
-    }
+        bound = new Rectangle(xx, yy - layout.height, layout.width * 1.5f, layout.height * 1.5f);    }
 
 }
